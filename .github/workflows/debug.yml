@@ -13,7 +13,7 @@ jobs:
         id: tag-without-version
         shell: bash
         run: |
-          echo "tag_name=${GITHUB_REFNAME#*-}"
+          echo "tag_name=${GITHUB_REFNAME%-*}" >> $GITHUB_OUTPUT
         env:
           GITHUB_REFNAME: ${{ github.ref_name }}
 
