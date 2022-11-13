@@ -10,4 +10,4 @@ jobs:
   runs-on: ubuntu-latest
   steps:
     - name: "Echo tag"
-      run: echo "Ref: ${ github.ref_name }" && echo "Repo ${GITHUB_REPOSITORY#*/}"
+      run: echo "Ref: "${ github.ref_name } && echo "Repo "${GITHUB_REPOSITORY#*/}
