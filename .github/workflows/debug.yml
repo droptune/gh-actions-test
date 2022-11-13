@@ -8,6 +8,5 @@ on:
 jobs:
   call-remote-workflow:
     uses: droptune/gh-actions-test-workflows/.github/workflows/get-info.yml@main
-    with:
-      secrets:
-        repo_secret: ${{ secrets.repo_secret }}
+    secrets:
+      repo_secret: ${{ secrets.repo_secret }}
