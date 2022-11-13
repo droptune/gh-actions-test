@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Echo tag"
+        id: tag-without-version
         shell: bash
         run: |
-          echo "Ref: "${GITHUB_REFNAME}
-          echo "Repo "${GITHUB_REPOSITORY#*/}
+          echo "tag_name=${GITHUB_REFNAME#*-}"
         env:
-          GITHUB_REPOSITORY: ${{ github.repository.name }}
           GITHUB_REFNAME: ${{ github.ref_name }}
+
+      - name: "Get tag name"
+        run: echo "The tag name is ${{ steps.tag-without-version.outputs.tag_name }}"
