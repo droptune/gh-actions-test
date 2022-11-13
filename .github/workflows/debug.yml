@@ -6,14 +6,14 @@ on:
       - testing-[1-9]+.[0-9]+.[0-9]+*
 
 jobs:
-  name: get-tag
-  runs-on: ubuntu-latest
-  steps:
-    - name: "Echo tag"
-      run: |
-        echo "Ref: "${ GITHUB_REFNAME }
-      run: echo "Repo "${GITHUB_REPOSITORY#*/}
-      env:
-        GITHUB_REPOSITORY: ${{ github.repository }}
-        GITHUB_REFNAME: ${{ github.ref_name }}
-
+  get-tag:
+    name: get tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Echo tag"
+        run: |
+          echo "Ref: "${ GITHUB_REFNAME }
+        run: echo "Repo "${GITHUB_REPOSITORY#*/}
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REFNAME: ${{ github.ref_name }}
