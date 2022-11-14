@@ -28,7 +28,7 @@ jobs:
       - name: "Echo base ref"
         shell: bash
         run: |
-          echo BASE REF: "%{BASE_REF}"
+          echo BASE REF: "${BASE_REF}"
         env:
           BASE_REF: ${{ github.base_ref }}
 
