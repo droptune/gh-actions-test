@@ -30,7 +30,7 @@ jobs:
         run: |
           echo BASE REF: "${BASE_REF}"
         env:
-          BASE_REF: ${{ github.base_ref }}
+          BASE_REF: ${{ github.event.base_ref }}
 
       - name: "Get tag name"
         run: echo "The tag name is ${{ steps.tag-without-version.outputs.tag_name }}"
