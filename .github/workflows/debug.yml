@@ -25,6 +25,12 @@ jobs:
         env:
           GITHUB_REFNAME: ${{ github.ref_name }}
 
+      - name: Echo sha
+        shell: bash
+        run: echo ${git_sha}
+        env:
+          git_sha: ${{ github.sha }}
+
       - name: "Echo base ref"
         shell: bash
         run: |
