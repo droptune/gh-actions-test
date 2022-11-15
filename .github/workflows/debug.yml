@@ -60,16 +60,15 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v3
-#
-#
+
       - name: Set up QEMU
         id: setup-qemu
         uses: docker/setup-qemu-action@v2
-#
+
       - name: Set up Docker Buildx
         id: set-up-docker-buildx
         uses: docker/setup-buildx-action@v2
-#
+
       - name: Get current branch name
         id: get-branch-name
         shell: bash
@@ -77,19 +76,20 @@ jobs:
           echo "branch_name=${BASE_REF##*/}" >> $GITHUB_OUTPUT
         env:
           BASE_REF: ${{ github.event.base_ref }}
-#
+
       - name: Show current branch name
         run: echo "Branch name is ${{ steps.get-branch-name.outputs.branch_name }}"
-#      - name: Build and push staging or prod
-#        id: build-and-push-stable
-#        if: github.ref_name != 'dev'
-#        uses: docker/build-push-action@v3
-#        with:
-#          tags: my-image:${{ github.ref_name }},my-image:${{ steps.get-branch-name.outputs.branch_name }}-cache
+
+      - name: Build and push staging or prod
+        id: build-and-push-stable
+        if: ${{ github.ref_name != 'dev' }}
+        uses: docker/build-push-action@v3
+        with:
+          tags: my-image:${{ github.ref_name }},my-image:${{ steps.get-branch-name.outputs.branch_name }}-cache
 ##
 #      - name: Build and push dev
 #        id: build-and-push-dev
-#        if: github.ref_name == 'dev'
+#        if: ${{ github.ref_name == 'dev' }}
 #        uses: docker/build-push-action@v3
 #        with:
 #          tags: my-image:dev-cache,my-image:dev.${{ github.sha }}
