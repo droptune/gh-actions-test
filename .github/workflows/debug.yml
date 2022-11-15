@@ -16,15 +16,15 @@ jobs:
     name: get tag
     runs-on: ubuntu-latest
     steps:
-      - name: "Echo refs"
-        shell: bash
-        run: |
-          echo ref_name: ${REFNAME}
-          echo github.event.base_ref: ${BASE_REF}
-          echo branch_name: ${BASE_REF#refs/heads/}
-        env:
-          REFNAME: ${{ github.ref_name }}
-          BASE_REF: ${{ github.event.base_ref }}
+#      - name: "Echo refs"
+#        shell: bash
+#        run: |
+#          echo ref_name: ${REFNAME}
+#          echo github.event.base_ref: ${BASE_REF}
+#          echo branch_name: ${BASE_REF#refs/heads/}
+#        env:
+#          REFNAME: ${{ github.ref_name }}
+#          BASE_REF: ${{ github.event.base_ref }}
 #      - name: "Echo tag"
 #        id: tag-without-version
 #        shell: bash
