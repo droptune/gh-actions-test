@@ -61,7 +61,7 @@ jobs:
           GITHUB_BASE_REF: ${{ github.event.base_ref }}
 
       - name: Show current branch name
-        run: echo "Branch name is: ${{ steps.get-branch-name.outputs.branch_name }}"
+        run: echo "Branch name is ${{ steps.get-branch-name.outputs.branch_name }}"
 
       - name: Set up QEMU
         id: setup-qemu
