@@ -84,11 +84,11 @@ jobs:
         if: github.ref_name != 'dev'
         uses: docker/build-push-action@v3
         with:
-          tags: ${{ steps.get-branch-name.outputs.branch_name || github.ref_name }}:cache
+          tags: my-image:${{ github.ref_name }},my-image:${{ steps.get-branch-name.outputs.branch_name }}-cache
 #
       - name: Build and push dev
         id: build-and-push-dev
         if: github.ref_name == 'dev'
         uses: docker/build-push-action@v3
         with:
-          tags: empty:dev-cache
+          tags: my-image:dev-cache,my-image:dev.${{ github.sha }}
