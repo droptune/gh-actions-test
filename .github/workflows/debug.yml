@@ -21,11 +21,9 @@ jobs:
         run: |
           echo ref_name: ${REFNAME}
           echo github.event.base_ref: ${BASE_REF}
-          echo event.base_ref: ${EVENT_BASE_REF}
         env:
           REFNAME: ${{ github.ref_name }}
           BASE_REF: ${{ github.event.base_ref }}
-          EVENT_BASE_REF: ${{ event.base_ref }}
 #      - name: "Echo tag"
 #        id: tag-without-version
 #        shell: bash
