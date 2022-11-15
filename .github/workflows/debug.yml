@@ -65,7 +65,6 @@ jobs:
         id: get-branch-name
         shell: bash
         run: |
-          echo "branch_name=${BASE_REF##*/}"
           echo "branch_name=${BASE_REF##*/}" >> $GITHUB_OUTPUT
         env:
           BASE_REF: ${{ github.event.base_ref }}
