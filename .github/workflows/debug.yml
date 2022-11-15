@@ -73,9 +73,9 @@ jobs:
       - name: Show current branch name
         run: echo "Branch name is ${{ steps.get-branch-name.outputs.branch_name }}"
 #
-#      - name: Set up QEMU
-#        id: setup-qemu
-#        uses: docker/setup-qemu-action@v2
+      - name: Set up QEMU
+        id: setup-qemu
+        uses: docker/setup-qemu-action@v2
 #
 #      - name: Set up Docker Buildx
 #        id: set-up-docker-buildx
