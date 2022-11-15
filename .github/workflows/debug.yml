@@ -80,4 +80,4 @@ jobs:
         if: github.ref_name == 'dev'
         uses: docker/build-push-action@v3
         with:
-          tags: empty:dev-${{ github.get-branch-name.outputs.branch_name }}
+          tags: empty:dev-${{ steps.get-branch-name.outputs.branch_name }}
