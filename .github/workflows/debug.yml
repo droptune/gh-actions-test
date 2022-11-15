@@ -55,10 +55,12 @@ jobs:
       - name: Get current branch name
         id: get-branch-name
         shell: bash
-        run: |
-          echo "branch_name=${GITHUB_BASE_REF#/refs/heads/}" >> $GITHUB_ENV
+        run: echo "branch_name=${GITHUB_BASE_REF#/refs/heads/}" >> $GITHUB_OUTPUT
         env:
           GITHUB_BASE_REF: ${{ github.event.base_ref }}
+
+      - name: Show current branch name
+        run: echo "Branch name is: ${{ steps.get-branch-name.outputs.branch_name }}"
 
       - name: Set up QEMU
         id: setup-qemu
