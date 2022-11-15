@@ -47,3 +47,37 @@ jobs:
 
       - name: "Get tag name"
         run: echo "The tag name is ${{ steps.tag-without-version.outputs.tag_name }}"
+
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Get current branch name
+        id: get-branch-name
+        shell: bash
+        run: |
+          echo "branch_name=${GITHUB_BASE_REF#/refs/heads/}" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_BASE_REF: ${{ github.event.base_ref }}
+
+      - name: Set up QEMU
+        id: setup-qemu
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        id: set-up-docker-buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push staging or prod
+        id: build-and-push-stable
+        if: github.ref_name != 'dev'
+        uses: docker/build-push-action@v3
+        with:
+          tags: empty:${{ github.ref_name }}
+
+      - name: Build and push dev
+        id: build-and-push-dev
+        if: github.ref_name == 'dev'
+        uses: docker/build-push-action@v3
+        with:
+          tags: empty:dev-${{ github.get-branch-name.outputs.branch_name }}
